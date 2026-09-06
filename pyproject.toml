@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "task-trail"
+version = "0.2.0"
+description = "A Python CLI that converts repository TODOs, gaps, and cleanup work into GitHub-ready tasks and issue descriptions."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+  { name = "Nitish Vimal" }
+]
+keywords = [
+  "python",
+  "cli",
+  "github",
+  "issues",
+  "todo",
+  "developer-tools",
+  "repository",
+  "automation"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Bug Tracking",
+  "Topic :: Software Development :: Documentation"
+]
+dependencies = [
+  "typer>=0.12.0",
+  "rich>=13.7.0",
+  "pyyaml>=6.0.1"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.5.0",
+  "mypy>=1.9.0"
+]
+
+[project.scripts]
+tasktrail = "tasktrail.cli:app"
+task-trail = "tasktrail.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/n-vim/task-trail"
+Repository = "https://github.com/n-vim/task-trail"
+Issues = "https://github.com/n-vim/task-trail/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tasktrail"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+packages = ["tasktrail"]
